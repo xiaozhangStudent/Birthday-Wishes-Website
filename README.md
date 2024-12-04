@@ -116,7 +116,8 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 2. 特效大小：不要超过30，否则可能显示不完整
 3. 动画时间：可以根据文字长度适当调整显示时间
 4. 音乐文件：确保路径正确，支持mp3格式
-###演示
+   
+### 演示
 ![1733323019708.webp](https://www.images.xiaozhangstu.com/i/2024/12/04/6750690437f25.webp)
 ![1733323056913.webp](https://www.images.xiaozhangstu.com/i/2024/12/04/67506929b8d43.webp)
 ![1733323055927.webp](https://www.images.xiaozhangstu.com/i/2024/12/04/67506928d5ce5.webp)
