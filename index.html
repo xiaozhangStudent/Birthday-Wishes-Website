@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>生日快乐</title>
+
+  <link rel="stylesheet" href="css/normalize.css">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="css/password.css">
+
+</head>
+
+<body>
+  <!-- 密码页面 -->
+  <div id="password-page" class="password-container">
+    <div class="password-box">
+      <div class="hearts">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+      </div>
+      <h2>亲爱的小张同学</h2>
+      <p>这是一份特别的生日惊喜</p>
+      <p>请输入密码开启你的生日祝福</p>
+      <input type="password" id="password-input" placeholder="输入密码" />
+      <button onclick="checkPassword()">打开祝福</button>
+      <p class="hint">提示: 你的生日日期</p>
+    </div>
+  </div>
+
+  <!-- 动画页面中只保留必要元素 -->
+  <div id="animation-page" style="display:none;">
+    <div class="stars"></div>
+    <canvas class="canvas"></canvas>
+    <div id="replay-button" class="replay-button" style="display: none;">
+      <button onclick="replayAnimation()">
+        <span>重新观看</span>
+        <div class="star-1">
+          <svg xmlns="http://www.w3.org/dialog" viewBox="0 0 784.11 815.53" style="border-radius:50%;"><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" /></svg>
+        </div>
+        <div class="star-2">
+          <svg xmlns="http://www.w3.org/dialog" viewBox="0 0 784.11 815.53" style="border-radius:50%;"><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" /></svg>
+        </div>
+        <div class="star-3">
+          <svg xmlns="http://www.w3.org/dialog" viewBox="0 0 784.11 815.53" style="border-radius:50%;"><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" /></svg>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <script src="js/index.js"></script>
+  <script>
+    // 设置密码验证
+    function checkPassword() {
+      const input = document.getElementById('password-input');
+      const password = "20040919"; // 修改为小张同学的生日
+      
+      if(input.value === password) {
+        // 密码正确,显示动画页面
+        document.getElementById('password-page').style.display = 'none';
+        document.getElementById('animation-page').style.display = 'block';
+        
+        createStars(); // 创建星星
+        
+        // 延迟一段时间后再初始化动画
+        setTimeout(() => {
+          S.init();
+        }, 1000);
+        
+        // 添加音乐播放
+        document.getElementById('bgMusic').play().catch(function(error) {
+          console.log("播放音乐失败:", error);
+        });
+      } else {
+        alert('密码错误,再想想哦~');
+        input.value = '';
+      }
+    }
+
+    // 生成星星
+    function createStars() {
+      const starsContainer = document.querySelector('.stars');
+      const numberOfStars = 50;
+      
+      for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // 随机位置
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        
+        // 随机动画延迟
+        star.style.animationDelay = `${Math.random() * 1}s`;
+        
+        starsContainer.appendChild(star);
+      }
+    }
+
+    function replayAnimation() {
+      document.getElementById('replay-button').style.display = 'none';
+      S.init();
+    }
+  </script>
+
+  <audio id="bgMusic" loop>
+    <source src="path/to/birthday-music.mp3" type="audio/mpeg">
+  </audio>
+
+</body>
+
+</html>
